@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import { useContext, useEffect } from "react";
@@ -9,12 +10,12 @@ import LeadList from "../../components/LeadList";
 import styles from "../../styles/dashboard.module.css";
 
 const Dashboard = () => {
-  const { user, setUser, logout } = useContext(AuthContext);
+  const { apiUrl, user, setUser, logout } = useContext(AuthContext);
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     if (userId) {
-      fetch(`http://localhost:5000/api/admin/user/${userId}`, {
+      fetch(`${apiUrl}/api/admin/user/${userId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -26,17 +27,12 @@ const Dashboard = () => {
           setUser(data.data);
         });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (!user) {
-    return <p>Loading...</p>;
-  }
 
   return (
     <div className={styles.container}>
       <div className={styles.header_container}>
-        <h1>Welcome, {user.username}</h1>
+        <h1>Welcome, {user?.username}</h1>
         <button className={styles.logout_btn} onClick={logout}>
           Logout
         </button>

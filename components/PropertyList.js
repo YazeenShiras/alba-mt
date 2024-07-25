@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, useContext } from "react";
 
 import PropertyCard from "./PropertyCard";
 import PropertyForm from "./PropertyForm";
@@ -9,17 +10,17 @@ import styles from "../styles/dashboard.module.css";
 const PropertyList = () => {
   const [properties, setProperties] = useState([]);
   const [selectedProperty, setSelectedProperty] = useState(null);
-  const { user } = useContext(AuthContext);
+
+  const { apiUrl, user } = useContext(AuthContext);
 
   useEffect(() => {
     if (user) {
       fetchProperties();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const fetchProperties = async () => {
-    await fetch(`http://localhost:5000/api/properties/${user._id}`, {
+    await fetch(`${apiUrl}/api/properties/${user._id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +36,7 @@ const PropertyList = () => {
   };
 
   const handleCreate = async (newProperty) => {
-    fetch(`http://localhost:5000/api/properties/${user._id}`, {
+    fetch(`${apiUrl}/api/properties/${user._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +53,7 @@ const PropertyList = () => {
   };
 
   const handleUpdate = async (updatedProperty) => {
-    await fetch(`http://localhost:5000/api/properties/${updatedProperty._id}`, {
+    await fetch(`${apiUrl}/api/properties/${updatedProperty._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -74,7 +75,7 @@ const PropertyList = () => {
   };
 
   const handleDelete = async (id) => {
-    await fetch(`http://localhost:5000/api/properties/${id}`, {
+    await fetch(`${apiUrl}/api/properties/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -90,8 +91,7 @@ const PropertyList = () => {
   };
 
   const handleLinkLead = async (propertyId, leadId) => {
-    console.log(propertyId, leadId);
-    await fetch(`http://localhost:5000/api/properties/linkLead`, {
+    await fetch(`${apiUrl}/api/properties/linkLead`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

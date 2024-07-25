@@ -10,6 +10,9 @@ export const AuthProvider = ({ children }) => {
 
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const [refresh, setRefresh] = useState(true);
+
+  const apiUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -25,7 +28,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, token, setUser, logout }}>
+    <AuthContext.Provider
+      value={{ apiUrl, user, token, setUser, refresh, setRefresh, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

@@ -15,10 +15,10 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const { setUser } = useContext(AuthContext);
+  const { apiUrl, setUser } = useContext(AuthContext);
 
   const register = (username, password) => {
-    fetch(`http://localhost:5000/api/admin/register`, {
+    fetch(`${apiUrl}/api/admin/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +43,7 @@ const LoginPage = () => {
   };
 
   const login = (username, password) => {
-    fetch(`http://localhost:5000/api/admin/login`, {
+    fetch(`${apiUrl}/api/admin/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

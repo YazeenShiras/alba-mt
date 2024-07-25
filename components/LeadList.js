@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect, useContext } from "react";
+
 import LeadForm from "./LeadForm";
 import LeadCard from "./LeadCard";
 import AuthContext from "../context/Authcontext";
@@ -8,17 +10,16 @@ import styles from "../styles/dashboard.module.css";
 const LeadList = () => {
   const [leads, setLeads] = useState([]);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
-  const { user } = useContext(AuthContext);
+  const { apiUrl, user, refresh, setRefresh } = useContext(AuthContext);
 
   useEffect(() => {
     if (user) {
       fetchCustomers();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [refresh]);
 
   const fetchCustomers = async () => {
-    await fetch(`http://localhost:5000/api/leads/${user._id}`, {
+    await fetch(`${apiUrl}/api/leads/${user._id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +35,7 @@ const LeadList = () => {
   };
 
   const handleCreate = async (newlead) => {
-    fetch(`http://localhost:5000/api/leads/${user._id}`, {
+    fetch(`${apiUrl}/api/leads/${user._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,6 +47,7 @@ const LeadList = () => {
       .then((data) => {
         if (data.status === 200) {
           setLeads([...leads, data.data]);
+          setRefresh(!refresh);
         }
       });
   };

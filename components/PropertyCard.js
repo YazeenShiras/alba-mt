@@ -1,20 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+
+import AuthContext from "@/context/Authcontext";
 
 import styles from "../styles/dashboard.module.css";
-import AuthContext from "@/context/Authcontext";
 
 const PropertyCard = ({ property, onUpdate, onDelete, onLinkLead }) => {
   const [leads, setLeads] = useState([]);
   const [leadId, setLeadId] = useState("");
-  const { user } = useContext(AuthContext);
+  const { apiUrl, user, refresh } = useContext(AuthContext);
 
   useEffect(() => {
     fetchCustomers();
-  }, []);
+  }, [refresh]);
 
   const fetchCustomers = async () => {
-    await fetch(`http://localhost:5000/api/leads/${user._id}`, {
+    await fetch(`${apiUrl}/api/leads/${user._id}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

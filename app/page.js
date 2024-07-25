@@ -1,10 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+
+import styles from "../styles/globals.module.css";
 
 const App = () => {
   const router = useRouter();
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -12,9 +16,13 @@ const App = () => {
     } else {
       router.push("/dashboard");
     }
-  }, [router]);
+  }, []);
 
-  return <p>Loading...</p>;
+  return (
+    <div className={styles.loading_container}>
+      <p>Loading...</p>
+    </div>
+  );
 };
 
 export default App;

@@ -1,18 +1,20 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
+
+import AuthContext from "../context/Authcontext";
 
 import styles from "../styles/dashboard.module.css";
-import AuthContext from "../context/Authcontext";
 
 const communities = ["CommunityA", "CommunityB"];
 const buildings = ["Building1", "Building2"];
 
 const PropertyForm = ({ onCreate, onUpdate, selectedProperty }) => {
   const { user } = useContext(AuthContext);
+
   const [property, setProperty] = useState({
     community: "",
     building: "",
     unitNo: "",
-    userId: user._id,
+    userId: user?._id,
   });
 
   useEffect(() => {
