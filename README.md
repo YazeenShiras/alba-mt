@@ -1,37 +1,22 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MERN Stack Machine Test - Alba Corp
 
-## Getting Started
+## Project Overview
+This project is a full stack (MongoDB, Express.js, Next.js, Node.js) application designed to manage user authentication and property management. The application consists of a backend server that handles authentication and property management logic, and a front end client that provides an interface for users to interact with the system.
 
-First, run the development server:
 
 ```bash
+git clone https://github.com/YazeenShiras/alba-mt-frontend.git
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Live url : [https://alba-yaseen.vercel.app](https://alba-yaseen.vercel.app/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+For backend code visit : [https://github.com/YazeenShiras/alba-mt-backend](https://github.com/YazeenShiras/alba-mt-backend/)
 
-## Learn More
+## Thank you
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# alba-mt-frontend
